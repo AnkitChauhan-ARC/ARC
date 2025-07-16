@@ -3,9 +3,9 @@
     border-radius: 10px;
     padding: 20px;
     margin-top: 130px;
-    margin-left: 470px;
-    margin-right: 490px;
-    height: 300px;
+    margin-left: 500px;
+    margin-right: 500px;
+    height: auto;
     box-shadow: 0 0 8px black;
     text-align: center;
      font-weight: bold;
@@ -16,10 +16,8 @@ body{
     background-color: aliceblue;
 }
 
-form{
-    padding: 30px;
-    
-}
+
+
 
 input{
     border-radius: 18px;
@@ -56,3 +54,22 @@ button{
       to { opacity: 1; transform: translateX(0); }
     }
 
+
+@media screen and (max-width:600px) {
+    .login-container{
+        width:auto;
+        height: auto;
+        margin: auto;
+        padding: auto;
+    }
+    
+}
+
+@media  screen and (min-width:600px) and (max-width:1024px) {
+    .login-container{
+        width:auto;
+        height: auto;
+        margin: auto;
+        padding: auto;
+    }
+}

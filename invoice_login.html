@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Book</title>
+    <link rel="stylesheet" href="invoice_login.css">
+</head>
+<body>
+
+     <div class="header">
+        <h1 id="text">
+            <span>Welcome to Invoice Book!</span>
+        </h1>
+     </div>
+
+
+    <div class="login-container">
+        <h1>Login</h1><hr>
+        <form action="\submit" method="post">
+            <label for="email" id="email">Email id:</label>
+            <input type="email" placeholder="Email" required>
+             <br><br>
+            <label for="password" id="password">password:</label>
+            <input type="password" placeholder="password" required >
+                <br><br>
+            <button  onclick="done_login()">Login</button>
+            <br><br>
+            <div id="new_user">New user?<a href="invoice_register.html">register</a></div>
+        </form>
+    </div>
+
+    <script>
+        function done_login(){
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+           if(email ===""){
+            alert("Please enter email id first");
+           }
+           if(password ===""){
+            alert("Please enter password first");
+           }
+           alert("Login successful");
+        }
+    </script>
+</body>
+</html>

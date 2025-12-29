@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthBot | Your 24/7 AI Health Companion</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #009688; /* Teal for Trust */
+            --primary-dark: #00796b;
+            --accent: #FF6F61; /* Coral for Alerts/Action */
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --text-light: #777;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .btn-cta:hover { background: var(--primary-dark); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #e0f2f1 0%, #ffffff 100%);
+            min-height: 80vh;
+        }
+        .hero-text { flex: 1; min-width: 300px; padding-right: 2rem; }
+        .hero-text h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--text-dark); }
+        .hero-text span { color: var(--primary); }
+        .hero-text p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem; }
+        
+        .hero-visual { 
+            flex: 1; 
+            min-width: 300px; 
+            display: flex; 
+            justify-content: center; 
+            position: relative; 
+        }
+
+        /* --- CHATBOT WIDGET UI --- */
+        .chat-container {
+            width: 350px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        .chat-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .chat-body {
+            height: 350px;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message { max-width: 80%; padding: 0.8rem; border-radius: 10px; font-size: 0.9rem; }
+        .bot-msg { background: #e0f2f1; color: var(--text-dark); align-self: flex-start; border-bottom-left-radius: 0; }
+        .user-msg { background: var(--primary); color: var(--white); align-self: flex-end; border-bottom-right-radius: 0; }
+        
+        .chat-input-area {
+            display: flex;
+            padding: 0.8rem;
+            border-top: 1px solid #eee;
+            background: var(--white);
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 0.6rem;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+        .chat-input-area button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features { padding: 4rem 5%; text-align: center; }
+        .features h2 { font-size: 2rem; margin-bottom: 2rem; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-5px); }
+        .icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; display: block;}
+
+        /* --- FOOTER --- */
+        footer { background: #222; color: #aaa; padding: 2rem 5%; text-align: center; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2rem; }
+            .hero { flex-direction: column; text-align: center; gap: 3rem; }
+            .hero-text { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🩺 HealthBot</div>
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it Works</a>
+            <a href="#about">About</a>
+        </nav>
+        <a href="#chat" class="btn-cta">Consult Now</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Your 24/7 AI <br><span>Health Companion</span></h1>
+            <p>Instant symptom checks, medication reminders, and doctor connections. HealthBot helps you manage your well-being directly from your home.</p>
+            <a href="#features" class="btn-cta" style="padding: 1rem 2rem;">Explore Features</a>
+        </div>
+
+        <div class="hero-visual">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <span>🤖 HealthBot Assistant</span>
+                    <span style="font-size: 0.8rem;">Online</span>
+                </div>
+                <div class="chat-body" id="chatBody">
+                    <div class="message bot-msg">Hello! I'm HealthBot. How are you feeling today?</div>
+                    </div>
+                <div class="chat-input-area">
+                    <input type="text" id="userInput" placeholder="Type your symptoms...">
+                    <button onclick="sendMessage()">➤</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>What HealthBot Can Do</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="icon">🔍</span>
+                <h3>Symptom Checker</h3>
+                <p>Describe your symptoms in natural language and get instant analysis and first-aid advice.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">💊</span>
+                <h3>Smart Reminders</h3>
+                <p>Never miss a dose. Get timely notifications for medications and hydration.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🩺</span>
+                <h3>Doctor Connect</h3>
+                <p>For complex issues, we seamlessly connect you with available specialists near you.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">📊</span>
+                <h3>Health Tracking</h3>
+                <p>Monitor your daily vitals, sleep, and fitness progress in one dashboard.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 HealthBot Project. Designed for Computer Engineering Final Year.</p>
+    </footer>
+
+    <script>
+        const chatBody = document.getElementById('chatBody');
+        const userInput = document.getElementById('userInput');
+
+        // Simple Keyword Matching Logic (To simulate AI)
+        const botLogic = (input) => {
+            input = input.toLowerCase();
+            if (input.includes('headache') || input.includes('fever')) {
+                return "I'm sorry to hear that. For a mild headache/fever, ensure you are hydrated and resting. If it persists for >24h, please consult a doctor. Would you like to book an appointment?";
+            } else if (input.includes('appointment') || input.includes('doctor')) {
+                return "I can help with that. Please select your preferred time slot: Morning or Evening?";
+            } else if (input.includes('diet') || input.includes('food')) {
+                return "Nutrition is key! I can create a meal plan for you. Are you looking for weight loss or muscle gain?";
+            } else if (input.includes('hello') || input.includes('hi')) {
+                return "Hi there! I am ready to assist with your health queries.";
+            } else {
+                return "I'm processing that. Could you describe your symptoms in more detail?";
+            }
+        };
+
+        function sendMessage() {
+            const text = userInput.value;
+            if (text.trim() === "") return;
+
+            // 1. Add User Message
+            addMessage(text, 'user-msg');
+            userInput.value = '';
+
+            // 2. Simulate Bot Thinking Delay
+            setTimeout(() => {
+                const botResponse = botLogic(text);
+                addMessage(botResponse, 'bot-msg');
+            }, 1000);
+        }
+
+        function addMessage(text, className) {
+            const div = document.createElement('div');
+            div.classList.add('message', className);
+            div.innerText = text;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll to bottom
+        }
+
+        // Allow "Enter" key to send
+        userInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
